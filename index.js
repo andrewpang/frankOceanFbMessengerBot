@@ -60,6 +60,15 @@ function isAlbumOut(sender, text){
         sendTextMessage(sender, "no");
         return true;
     }
+    if(text.indexOf("album out") > - 1){
+        sendTextMessage(sender, "nah");
+        return true;
+    }
+     if(text.indexOf("album released") > - 1){
+        sendTextMessage(sender, "nuh uh");
+        return true;
+    }
+    return false;
 }
 
 function sendTextMessage(sender, text) {
