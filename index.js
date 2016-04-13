@@ -5,7 +5,7 @@ var app = express();
 var port = process.env.PORT || 8080;
 
 var verify_token = 'frank_ocean_bot_verify_token';
-var token = "EAAOjvBQqN4QBAJ9QgjDn2gKHDIMh5ZBvNxCAzqhovR6fn4t5yx1zxThZC8nGgRAQDZAMQrheHlPOtAwjZAwV50hg12iQbN7T3ZAWToStPYZC7AHUiBoNzzQ372V9M4pbZB5M8hqs8xlSXBlwzeNfKXGPh0IhiXBqwrfi1SysIrhNgZDZD";
+var token = "EAAOjvBQqN4QBAOGDAXiZC2knutUQagevrf5u6FIIRlnTaazevA8plywpF7KHzUn0ZCdpKn4ZApfjS5jd9Cj2qCasYV2KVN1n7i7JHKKZCbywLgvXKVyzMwMVHy6JA4tSui5fV1H3rbXb2hbVOzs3twd9484CONinUt7qaAoKJgZDZD";
 
 app.use(bodyParser.json());
 
@@ -36,6 +36,10 @@ app.post('/webhook/', function (req, res) {
 
         if (event.message && event.message.text) {
             var text = event.message.text;
+
+            if(text == 'Is Frank Ocean\'s Album Out?'){
+                sendTextMessage(sender, "no");
+            }
 
             sendTextMessage(sender, "Echo: " + text.substring(0, 200));
         }
