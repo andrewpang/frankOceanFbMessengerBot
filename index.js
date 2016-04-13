@@ -93,24 +93,32 @@ function randomResponse(sender, text){
 }
 
 function isAlbumOut(sender, text){
+    var responses = [
+    'nah',
+    'no',
+    'i wish'
+    ];
+    var randomNumber = Math.floor(Math.random()*responses.length);
+    var response = responses[randomNumber];
+
     if(text.indexOf("album out") > -1){
-        sendTextMessage(sender, "nah");
+        sendTextMessage(sender, response);
         return true;
     }
     if(text.indexOf("album released") > -1){
-        sendTextMessage(sender, "nuh uh");
+        sendTextMessage(sender, response);
         return true;
     }
     if(text.indexOf("album leaked") > -1){
-        sendTextMessage(sender, "nuh uh");
+        sendTextMessage(sender, response);
         return true;
     }
     if(text.indexOf("has it come out") > -1){
-        sendTextMessage(sender, "nuh uh");
+        sendTextMessage(sender, response);
         return true;
     }
     if(text.indexOf("album leaked") > -1){
-        sendTextMessage(sender, "nuh uh");
+        sendTextMessage(sender, response);
         return true;
     }
     return false;
@@ -118,6 +126,10 @@ function isAlbumOut(sender, text){
 
 function whenIsAlbumOut(sender, text){
     if(text.indexOf("when is") > -1){
+        sendTextMessage(sender, "IDK");
+        return true;
+    }
+    if(text.indexOf("when will") > -1){
         sendTextMessage(sender, "IDK");
         return true;
     }
