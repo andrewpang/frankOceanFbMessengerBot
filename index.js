@@ -115,7 +115,7 @@ function isAlbumOut(sender, text){
     'No ;(',
     'I want to tell you yes, but I can\'t lie',
     'It\'s not out yet',
-    'Ughhh no'
+    'Ughhh no',
     'Wait...is this a leak? https://youtu.be/dQw4w9WgXcQ'
     ];
     var randomNumber = Math.floor(Math.random()*responses.length);
@@ -146,10 +146,11 @@ function isAlbumOut(sender, text){
 
 function whenIsAlbumOut(sender, text){
     var responses = [
-    'IDK', 
-    'I really wish I knew', 
+    'I don\'t know', 
+    'I wish I knew', 
     'I heard it was coming out in Nevuary', 
-    'Hopefully soon'
+    'Hopefully soon',
+    'Type "Tell me when the album comes out" and I\'ll let you know!'
     ];
     var randomNumber = Math.floor(Math.random()*responses.length);
     var response = responses[randomNumber];
