@@ -109,9 +109,14 @@ function randomResponse(sender, text){
 
 function isAlbumOut(sender, text){
     var responses = [
-    'nah',
-    'no',
-    'i wish'
+    'Nope',
+    'No',
+    'I wish',
+    'No ;(',
+    'I want to tell you yes, but I can\'t lie',
+    'It\'s not out yet',
+    'Ughhh no'
+    'Wait...is this a leak? https://youtu.be/dQw4w9WgXcQ'
     ];
     var randomNumber = Math.floor(Math.random()*responses.length);
     var response = responses[randomNumber];
@@ -140,12 +145,21 @@ function isAlbumOut(sender, text){
 }
 
 function whenIsAlbumOut(sender, text){
+    var responses = [
+    'IDK', 
+    'I really wish I knew', 
+    'I heard it was coming out in Nevuary', 
+    'Hopefully soon'
+    ];
+    var randomNumber = Math.floor(Math.random()*responses.length);
+    var response = responses[randomNumber];
+
     if(text.indexOf("when is") > -1){
-        sendTextMessage(sender, "IDK");
+        sendTextMessage(sender, response);
         return true;
     }
     if(text.indexOf("when will") > -1){
-        sendTextMessage(sender, "IDK");
+        sendTextMessage(sender, response);
         return true;
     }
     return false;
@@ -172,10 +186,11 @@ function showMeMusicVideos(sender, text){
         }
       }
     };
+
     musicVideos.push(swimGoodData);
 
     if(text.indexOf("swim good") > -1){
-        sendGenericMessage(sender, musicVideos[0]);
+        sendGenericMessage(sender, swimGoodData);
         return true;
     }
     return false;
