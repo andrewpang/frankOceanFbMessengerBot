@@ -36,10 +36,8 @@ app.post('/webhook/', function (req, res) {
 
         if (event.message && event.message.text) {
             var text = event.message.text;
+            isAlbumOut(sender, text.toLowerCase());
 
-            if(text == 'Is Frank Ocean\'s Album Out?'){
-                sendTextMessage(sender, "no");
-            }
 
             sendTextMessage(sender, "Echo: " + text.substring(0, 200));
         }
@@ -54,6 +52,12 @@ app.listen(port, function () {
     console.log('Facebook Messenger echoing bot started on port' + port);
 
 });
+
+function isAlbumOut(sender, text){
+    if(text == 'is frank ocean\'s album out?'){
+        sendTextMessage(sender, "no");
+    }
+}
 
 function sendTextMessage(sender, text) {
 
