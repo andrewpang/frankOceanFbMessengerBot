@@ -37,12 +37,9 @@ app.post('/webhook/', function (req, res) {
         if (event.message && event.message.text) {
             var text = event.message.text;
 
-            if(isAlbumOut(sender, text.toLowerCase())){
-                break;
-            }
-            else if(whenIsAlbumOut(sender, text.toLowerCase())){
-                break;
-            }
+            if(isAlbumOut(sender, text.toLowerCase())){ break;  }
+            else if(whenIsAlbumOut(sender, text.toLowerCase())){ break; } 
+            else if(showMeMusicVideos(sender, text.toLowerCase())){ break; }
             else{
                 randomResponse(sender, text);
             }
@@ -88,6 +85,51 @@ function sendTextMessage(sender, text) {
 
 }
 
+function sendGenericMessage(sender) {
+  messageData = {
+    "attachment": {
+      "type": "template",
+      "payload": {
+        "template_type": "generic",
+        "elements": [{
+          "title": "Swim Good",
+          "subtitle": "From Nostalgia, Ultra",
+          "image_url": "https://upload.wikimedia.org/wikipedia/en/d/d9/Frank_ocean_swim_good.jpg",
+          "buttons": [{
+            "type": "web_url",
+            "url": "https://youtu.be/PmN9rZW0HGo",
+            "title": "Watch Music Video"
+          }],
+        },{
+          "title": "Second card",
+          "subtitle": "Element #2 of an hscroll",
+          "image_url": "http://messengerdemo.parseapp.com/img/gearvr.png",
+          "buttons": [{
+            "type": "postback",
+            "title": "Postback",
+            "payload": "Payload for second element in a generic bubble",
+          }],
+        }]
+      }
+    }
+  };
+  request({
+    url: 'https://graph.facebook.com/v2.6/me/messages',
+    qs: {access_token:token},
+    method: 'POST',
+    json: {
+      recipient: {id:sender},
+      message: messageData,
+    }
+  }, function(error, response, body) {
+    if (error) {
+      console.log('Error sending message: ', error);
+    } else if (response.body.error) {
+      console.log('Error: ', response.body.error);
+    }
+  });
+}
+
 function randomResponse(sender, text){
     sendTextMessage(sender, "Echo: " + text.substring(0, 200));
 }
@@ -131,6 +173,14 @@ function whenIsAlbumOut(sender, text){
     }
     if(text.indexOf("when will") > -1){
         sendTextMessage(sender, "IDK");
+        return true;
+    }
+    return false;
+}
+
+function whenIsAlbumOut(sender, text){
+    if(text.indexOf("show me") > -1){
+        sendGenericMessage(sender);
         return true;
     }
     return false;
