@@ -152,26 +152,30 @@ function whenIsAlbumOut(sender, text){
 }
 
 function showMeMusicVideos(sender, text){
+    var musicVideos[];
+
+    swimGoodData = {
+      "attachment": {
+        "type": "template",
+        "payload": {
+          "template_type": "generic",
+          "elements": [{
+            "title": "Swim Good",
+            "subtitle": "From Nostalgia, Ultra",
+            "image_url": "https://i.ytimg.com/vi/7Wp4m-FbBBw/maxresdefault.jpg",
+            "buttons": [{
+              "type": "web_url",
+              "url": "https://youtu.be/PmN9rZW0HGo",
+              "title": "Watch Music Video"
+            }],
+          }]
+        }
+      }
+    };
+    musicVideos.push(swimGoodData);
+
     if(text.indexOf("swim good") > -1){
-        messageData = {
-          "attachment": {
-            "type": "template",
-            "payload": {
-              "template_type": "generic",
-              "elements": [{
-                "title": "Swim Good",
-                "subtitle": "From Nostalgia, Ultra",
-                "image_url": "https://i.ytimg.com/vi/7Wp4m-FbBBw/maxresdefault.jpg",
-                "buttons": [{
-                  "type": "web_url",
-                  "url": "https://youtu.be/PmN9rZW0HGo",
-                  "title": "Watch Music Video"
-                }],
-              }]
-            }
-          }
-        };
-        sendGenericMessage(sender, messageData);
+        sendGenericMessage(sender, musicVideos[0]);
         return true;
     }
     return false;
