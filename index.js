@@ -152,7 +152,7 @@ function whenIsAlbumOut(sender, text){
 }
 
 function showMeMusicVideos(sender, text){
-    var musicVideos[];
+    var musicVideos = [];
 
     swimGoodData = {
       "attachment": {
