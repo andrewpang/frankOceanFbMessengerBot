@@ -40,6 +40,7 @@ app.post('/webhook/', function (req, res) {
             if(isAlbumOut(sender, text.toLowerCase())){ break;  }
             else if(whenIsAlbumOut(sender, text.toLowerCase())){ break; } 
             else if(showMeMusicVideos(sender, text.toLowerCase())){ break; }
+            else if(knowAboutLonny(sender, text.toLowerCase())){ break; }
             else{
                 randomResponse(sender, text);
             }
@@ -104,13 +105,22 @@ function sendGenericMessage(sender, messageData) {
 }
 
 function randomResponse(sender, text){
-    sendTextMessage(sender, "Echo: " + text.substring(0, 200));
+    var responses = [
+        "This is weird, I don't know what to say",
+        "Uhh...what?",
+        "Say that again, please",
+        "I'm not sure how to respond to that",
+        "Here read this: http://pigeonsandplanes.com/2016/04/frank-ocean-timeline/"
+    ];
+    var randomNumber = Math.floor(Math.random()*responses.length);
+    var response = responses[randomNumber];
+
+    sendTextMessage(sender, response);
 }
 
 function isAlbumOut(sender, text){
     var responses = [
-    'Nope',
-    'No',
+    'Nope, unfortunately',
     'I wish',
     'No ;(',
     'I want to tell you yes, but I can\'t lie',
@@ -196,4 +206,13 @@ function showMeMusicVideos(sender, text){
     }
     return false;
 }
+
+function knowAboutLonny(sender, text){
+    if(text.indexOf("Lonny") > -1){
+        sendTextMessage(sender, "Oh, you know about Lonny?");
+        return true;
+    }
+    return false;
+}
+
 
