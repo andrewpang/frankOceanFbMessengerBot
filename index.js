@@ -36,7 +36,9 @@ app.post('/webhook/', function (req, res) {
 
         if (event.message && event.message.text) {
             var text = event.message.text;
-            isAlbumOut(sender, text.toLowerCase());
+            if(isAlbumOut(sender, text.toLowerCase())){
+                break;
+            }
 
 
             sendTextMessage(sender, "Echo: " + text.substring(0, 200));
@@ -56,6 +58,7 @@ app.listen(port, function () {
 function isAlbumOut(sender, text){
     if(text == 'is frank ocean\'s album out?'){
         sendTextMessage(sender, "no");
+        return true;
     }
 }
 
