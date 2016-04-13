@@ -36,13 +36,19 @@ app.post('/webhook/', function (req, res) {
 
         if (event.message && event.message.text) {
             var text = event.message.text;
+
             if(isAlbumOut(sender, text.toLowerCase())){
                 break;
             }
-
-
-            sendTextMessage(sender, "Echo: " + text.substring(0, 200));
+            else if(whenIsAlbumOut(sender, text.toLowerCase())){
+                break;
+            }
+            else{
+                randomResponse(sender, text);
+            }
         }
+
+
     }
 
     res.sendStatus(200);
@@ -55,21 +61,6 @@ app.listen(port, function () {
 
 });
 
-function isAlbumOut(sender, text){
-    if(text == 'is frank ocean\'s album out?'){
-        sendTextMessage(sender, "no");
-        return true;
-    }
-    if(text.indexOf("album out") > - 1){
-        sendTextMessage(sender, "nah");
-        return true;
-    }
-     if(text.indexOf("album released") > - 1){
-        sendTextMessage(sender, "nuh uh");
-        return true;
-    }
-    return false;
-}
 
 function sendTextMessage(sender, text) {
 
@@ -96,3 +87,40 @@ function sendTextMessage(sender, text) {
     });
 
 }
+
+function randomResponse(sender, text){
+    sendTextMessage(sender, "Echo: " + text.substring(0, 200));
+}
+
+function isAlbumOut(sender, text){
+    if(text.indexOf("album out") > -1){
+        sendTextMessage(sender, "nah");
+        return true;
+    }
+    if(text.indexOf("album released") > -1){
+        sendTextMessage(sender, "nuh uh");
+        return true;
+    }
+    if(text.indexOf("album leaked") > -1){
+        sendTextMessage(sender, "nuh uh");
+        return true;
+    }
+    if(text.indexOf("has it come out") > -1){
+        sendTextMessage(sender, "nuh uh");
+        return true;
+    }
+    if(text.indexOf("album leaked") > -1){
+        sendTextMessage(sender, "nuh uh");
+        return true;
+    }
+    return false;
+}
+
+function whenIsAlbumOut(sender, text){
+    if(text.indexOf("when is") > -1){
+        sendTextMessage(sender, "IDK");
+        return true;
+    }
+    return false;
+}
+
