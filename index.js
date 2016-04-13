@@ -2,10 +2,10 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var request = require('request');
 var app = express();
+var port = process.env.PORT || 8080;
 
-// You MUST change these values, consult the Messenger Platform Getting Started guide
-var verify_token = 'superdupersecrettokenyay';
-var token = "43dff234lKedYBvMKfiKbonmbwaYUuGmBtmKtoJ8b3YxgPKOJpeNNLLIWxpJAqYSyorgQFQclU59IkYBXzaFASIFYOUREADTHISYOUAREAWESOMEOh4xh36szaxgysl2u7gP1xNexpLiLkOhiE2wZZdqlm9GgyouQAwv2ZPoUoBnJMrpqlqoMdvgoPMbfImbNkxGsISPhbsTzs4ps3d14";
+var verify_token = 'frank_ocean_bot_verify_token';
+var token = "EAAOjvBQqN4QBAJ9QgjDn2gKHDIMh5ZBvNxCAzqhovR6fn4t5yx1zxThZC8nGgRAQDZAMQrheHlPOtAwjZAwV50hg12iQbN7T3ZAWToStPYZC7AHUiBoNzzQ372V9M4pbZB5M8hqs8xlSXBlwzeNfKXGPh0IhiXBqwrfi1SysIrhNgZDZD";
 
 app.use(bodyParser.json());
 
@@ -45,9 +45,9 @@ app.post('/webhook/', function (req, res) {
 
 });
 
-app.listen(1337, function () {
+app.listen(port, function () {
 
-    console.log('Facebook Messenger echoing bot started on port 1337!');
+    console.log('Facebook Messenger echoing bot started on port' + port);
 
 });
 
