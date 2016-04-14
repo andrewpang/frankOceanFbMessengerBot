@@ -38,6 +38,7 @@ app.post('/webhook/', function (req, res) {
             var text = event.message.text;
 
             if(whenIsAlbumOut(sender, text.toLowerCase())){ break;  }
+            else if(willAlbumOut(sender, text.toLowerCase())){ break; } 
             else if(isAlbumOut(sender, text.toLowerCase())){ break; } 
             else if(showMeMusicVideos(sender, text.toLowerCase())){ break; }
             else if(knowAboutLonny(sender, text.toLowerCase())){ break; }
@@ -122,6 +123,21 @@ function randomResponse(sender, text){
     sendTextMessage(sender, response);
 }
 
+function willAlbumOut(sender, text){
+    var responses = [
+    'It should',
+    'I hope so',
+    'Who really knows?',
+    'It better!'
+    ];
+    var randomNumber = Math.floor(Math.random()*responses.length);
+    var response = responses[randomNumber];
+
+    if(text.indexOf("will") == 0){
+        sendTextMessage(sender, response);
+        return true;
+    }
+
 function isAlbumOut(sender, text){
     var responses = [
     'Nope, unfortunately',
@@ -143,7 +159,19 @@ function isAlbumOut(sender, text){
         sendTextMessage(sender, response);
         return true;
     }
-    if(text.indexOf("come out") > -1){
+    if(text.indexOf("has the album come out") > -1){
+        sendTextMessage(sender, response);
+        return true;
+    }
+    if(text.indexOf("has it come out") > -1){
+        sendTextMessage(sender, response);
+        return true;
+    }
+    if(text.indexOf("did it come out") > -1){
+        sendTextMessage(sender, response);
+        return true;
+    }
+    if(text.indexOf("did the album come out") > -1){
         sendTextMessage(sender, response);
         return true;
     }
