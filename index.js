@@ -37,10 +37,11 @@ app.post('/webhook/', function (req, res) {
         if (event.message && event.message.text) {
             var text = event.message.text;
 
-            if(isAlbumOut(sender, text.toLowerCase())){ break;  }
-            else if(whenIsAlbumOut(sender, text.toLowerCase())){ break; } 
+            if(whenIsAlbumOut(sender, text.toLowerCase())){ break;  }
+            else if(isAlbumOut(sender, text.toLowerCase())){ break; } 
             else if(showMeMusicVideos(sender, text.toLowerCase())){ break; }
             else if(knowAboutLonny(sender, text.toLowerCase())){ break; }
+            else if(thinkingAboutYou(sender, text.toLowerCase())){ break; }
             else{
                 randomResponse(sender, text);
             }
@@ -110,7 +111,10 @@ function randomResponse(sender, text){
         "Uhh...what?",
         "Say that again, please",
         "I'm not sure how to respond to that",
-        "Here read this: http://pigeonsandplanes.com/2016/04/frank-ocean-timeline/"
+        "Here read this: http://pigeonsandplanes.com/2016/04/frank-ocean-timeline/",
+        "What do you think my brain is made for, is it just a container for the mind?",
+        "What if the sky and the stars are for show and the aliens are watching live?",
+        "What are you, Hemingway?"
     ];
     var randomNumber = Math.floor(Math.random()*responses.length);
     var response = responses[randomNumber];
@@ -135,19 +139,19 @@ function isAlbumOut(sender, text){
         sendTextMessage(sender, response);
         return true;
     }
-    if(text.indexOf("album released") > -1){
+    if(text.indexOf("leaked") > -1){
         sendTextMessage(sender, response);
         return true;
     }
-    if(text.indexOf("album leaked") > -1){
+    if(text.indexOf("come out") > -1){
         sendTextMessage(sender, response);
         return true;
     }
-    if(text.indexOf("has it come out") > -1){
+    if(text.indexOf("out yet") > -1){
         sendTextMessage(sender, response);
         return true;
     }
-    if(text.indexOf("album leaked") > -1){
+    if(text.indexOf("released") > -1){
         sendTextMessage(sender, response);
         return true;
     }
@@ -173,6 +177,10 @@ function whenIsAlbumOut(sender, text){
         sendTextMessage(sender, response);
         return true;
     }
+    if(text.indexOf("what day") > -1){
+        sendTextMessage(sender, response);
+        return true;
+    }
     return false;
 }
 
@@ -186,7 +194,7 @@ function showMeMusicVideos(sender, text){
           "template_type": "generic",
           "elements": [{
             "title": "Swim Good",
-            "subtitle": "From Nostalgia, Ultra",
+            "subtitle": "And I've got this black suit on",
             "image_url": "https://i.ytimg.com/vi/7Wp4m-FbBBw/maxresdefault.jpg",
             "buttons": [{
               "type": "web_url",
@@ -198,18 +206,80 @@ function showMeMusicVideos(sender, text){
       }
     };
 
+    pyramidsData = {
+      "attachment": {
+        "type": "template",
+        "payload": {
+          "template_type": "generic",
+          "elements": [{
+            "title": "Pyramids",
+            "subtitle": "This video is so good",
+            "image_url": "https://www.google.com/url?sa=i&rct=j&q=&esrc=s&source=images&cd=&cad=rja&uact=8&ved=0ahUKEwjkr7y3mY3MAhVY62MKHWCDC3oQjRwIBw&url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3D2PPYndfEPHA&psig=AFQjCNE5A5_C99NbwbjPnTqnz2l5SOEYnA&ust=1460691336615801",
+            "buttons": [{
+              "type": "web_url",
+              "url": "http://vevo.ly/PBbPoP",
+              "title": "Watch Music Video"
+            }],
+          }]
+        }
+      }
+    };
+
     musicVideos.push(swimGoodData);
+    musicVideos.push(pyramidsData);
+
+    var randomNumber = Math.floor(Math.random()*musicVideos.length);
+    var randomVideo = musicVideos[randomNumber];
 
     if(text.indexOf("swim good") > -1){
         sendGenericMessage(sender, swimGoodData);
+        return true;
+    }
+    if(text.indexOf("pyramids") > -1){
+        sendGenericMessage(sender, pyramidsData);
+        return true;
+    }
+    if(text.indexOf("music video") > -1){
+        sendTextMessage(sender, "Watch this")
+        sendGenericMessage(sender, randomVideo);
         return true;
     }
     return false;
 }
 
 function knowAboutLonny(sender, text){
-    if(text.indexOf("Lonny") > -1){
+    if(text.indexOf("lonny") > -1){
         sendTextMessage(sender, "Oh, you know about Lonny?");
+        return true;
+    }
+    return false;
+}
+
+function thinkingAboutYou(sender, text){
+    var responses = [
+        'Thinking bout you too',
+        'Oooh no, no',
+        'Do you think about me still?',
+        "I've been thinking bout forever",
+        'Do you not think so far ahead?'
+    ];
+    var randomNumber = Math.floor(Math.random()*responses.length);
+    var response = responses[randomNumber];
+
+    if(text.indexOf("thinkin bout you") > -1){
+        sendTextMessage(sender, response);
+        return true;
+    }
+    if(text.indexOf("thinking about you") > -1){
+        sendTextMessage(sender, response);
+        return true;
+    }
+    if(text.indexOf("thinking bout you") > -1){
+        sendTextMessage(sender, response);
+        return true;
+    }
+    if(text.indexOf("thinkin about you") > -1){
+        sendTextMessage(sender, response);
         return true;
     }
     return false;
