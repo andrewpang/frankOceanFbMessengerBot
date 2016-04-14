@@ -137,6 +137,8 @@ function willAlbumOut(sender, text){
         sendTextMessage(sender, response);
         return true;
     }
+    return false;
+}
 
 function isAlbumOut(sender, text){
     var responses = [
