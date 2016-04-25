@@ -146,7 +146,7 @@ function willAlbumOut(sender, text){
 }
 
 function greeting(sender, text){
-    var responses = 'Hey, I\'m a bot that tells you if Frank Ocean\'s new album is out, I can also share my favorite music videos with you!'
+    var response = 'Hey, I\'m a bot that tells you if Frank Ocean\'s new album is out, I can also share my favorite music videos with you!'
 
     if(text.indexOf("hey") > -1){
         sendTextMessage(sender, response);
