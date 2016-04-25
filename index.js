@@ -275,7 +275,7 @@ function whenIsAlbumOut(sender, text){
 }
 
 function notify(sender, text){
-    var responses = 'Alright, I will notify you when the album is out!'
+    var response = 'Alright, I will notify you when the album is out!'
 
     if(text.indexOf("notify") > -1){
         sendTextMessage(sender, response);
@@ -300,7 +300,7 @@ function notify(sender, text){
 
 
 function lyrics(sender, text){
-    var responses = 'Check out Frank Ocean lyrics here: genius.com/artist/Frank-ocean'
+    var response = 'Check out Frank Ocean lyrics here: genius.com/artist/Frank-ocean'
 
     if(text.indexOf("lyrics") > -1){
         sendTextMessage(sender, response);
@@ -311,7 +311,7 @@ function lyrics(sender, text){
 }
 
 function news(sender, text){
-    var responses = 'Not much, but you can read this: http://pigeonsandplanes.com/2016/04/frank-ocean-timeline/'
+    var response = 'Not much, but you can read this: http://pigeonsandplanes.com/2016/04/frank-ocean-timeline/'
     if(text.indexOf("news") > -1){
         sendTextMessage(sender, response);
         return true;
@@ -321,7 +321,7 @@ function news(sender, text){
 }
 
 function news(sender, text){
-    var responses = 'Favorite? That is too hard of a question'
+    var response = 'Favorite? That is too hard of a question'
         sendTextMessage(sender, response);
         return true;
     }
