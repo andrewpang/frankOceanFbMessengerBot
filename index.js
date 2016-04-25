@@ -40,7 +40,12 @@ app.post('/webhook/', function (req, res) {
             if(whenIsAlbumOut(sender, text.toLowerCase())){ break;  }
             else if(willAlbumOut(sender, text.toLowerCase())){ break; } 
             else if(isAlbumOut(sender, text.toLowerCase())){ break; } 
+            else if(greeting(sender, text.toLowerCase())){ break; }
+            else if(notify(sender, text.toLowerCase())){ break; }
+            else if(lyrics(sender, text.toLowerCase())){ break; }
+            else if(news(sender, text.toLowerCase())){ break; }
             else if(showMeMusicVideos(sender, text.toLowerCase())){ break; }
+            else if(favorite(sender, text.toLowerCase())){ break; }
             else if(knowAboutLonny(sender, text.toLowerCase())){ break; }
             else if(thinkingAboutYou(sender, text.toLowerCase())){ break; }
             else{
@@ -110,12 +115,11 @@ function randomResponse(sender, text){
     var responses = [
         "This is weird, I don't know what to say",
         "Uhh...what?",
-        "Say that again, please",
         "I'm not sure how to respond to that",
-        "Here read this: http://pigeonsandplanes.com/2016/04/frank-ocean-timeline/",
         "What do you think my brain is made for, is it just a container for the mind?",
         "What if the sky and the stars are for show and the aliens are watching live?",
-        "What are you, Hemingway?"
+        "What are you, Hemingway?",
+        "You could ask me if the album is out, or I can share my favorite music videos from Frank"
     ];
     var randomNumber = Math.floor(Math.random()*responses.length);
     var response = responses[randomNumber];
@@ -137,6 +141,62 @@ function willAlbumOut(sender, text){
         sendTextMessage(sender, response);
         return true;
     }
+
+    return false;
+}
+
+function greeting(sender, text){
+    var responses = 'Hey, I\'m a bot that tells you if Frank Ocean\'s new album is out, I can also share my favorite music videos with you!'
+
+    if(text.indexOf("hey") > -1){
+        sendTextMessage(sender, response);
+        return true;
+    }
+    if(text.indexOf("hi") > -1){
+        sendTextMessage(sender, response);
+        return true;
+    }
+    if(text.indexOf("hello") > -1){
+        sendTextMessage(sender, response);
+        return true;
+    }
+    if(text.indexOf("what's up") > -1){
+        sendTextMessage(sender, response);
+        return true;
+    }
+    if(text.indexOf("whats up") > -1){
+        sendTextMessage(sender, response);
+        return true;
+    }
+    if(text.indexOf("who are you") > -1){
+        sendTextMessage(sender, response);
+        return true;
+    }
+    if(text.indexOf("what are you") > -1){
+        sendTextMessage(sender, response);
+        return true;
+    }
+    if(text.indexOf("what do you do") > -1){
+        sendTextMessage(sender, response);
+        return true;
+    }
+    if(text.indexOf("help") > -1){
+        sendTextMessage(sender, response);
+        return true;
+    }
+    if(text.indexOf("are you Frank") > -1){
+        sendTextMessage(sender, response);
+        return true;
+    }
+    if(text.indexOf("are you a") > -1){
+        sendTextMessage(sender, response);
+        return true;
+    }
+    if(text.indexOf("your name") > -1){
+        sendTextMessage(sender, response);
+        return true;
+    }
+
     return false;
 }
 
@@ -213,6 +273,63 @@ function whenIsAlbumOut(sender, text){
     }
     return false;
 }
+
+function notify(sender, text){
+    var responses = 'Alright, I will notify you when the album is out!'
+
+    if(text.indexOf("notify") > -1){
+        sendTextMessage(sender, response);
+        return true;
+    }
+    if(text.indexOf("alert") > -1){
+        sendTextMessage(sender, response);
+        return true;
+    }
+    if(text.indexOf("tell me when the album") > -1){
+        sendTextMessage(sender, response);
+        return true;
+    }
+    if(text.indexOf("message me when the album") > -1){
+        sendTextMessage(sender, response);
+        return true;
+    }
+
+    return false;
+}
+
+
+
+function lyrics(sender, text){
+    var responses = 'Check out Frank Ocean lyrics here: genius.com/artist/Frank-ocean'
+
+    if(text.indexOf("lyrics") > -1){
+        sendTextMessage(sender, response);
+        return true;
+    }
+
+    return false;
+}
+
+function news(sender, text){
+    var responses = 'Not much, but you can read this: http://pigeonsandplanes.com/2016/04/frank-ocean-timeline/'
+    if(text.indexOf("news") > -1){
+        sendTextMessage(sender, response);
+        return true;
+    }
+
+    return false;
+}
+
+function news(sender, text){
+    var responses = 'Favorite? That is too hard of a question'
+        sendTextMessage(sender, response);
+        return true;
+    }
+
+    return false;
+}
+
+
 
 function showMeMusicVideos(sender, text){
     var musicVideos = [];
