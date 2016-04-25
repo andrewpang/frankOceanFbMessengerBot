@@ -322,6 +322,7 @@ function news(sender, text){
 
 function favorite(sender, text){
     var response = 'Favorite? That is too hard of a question'
+    if(text.indexOf("favorite") > -1){
         sendTextMessage(sender, response);
         return true;
     }
