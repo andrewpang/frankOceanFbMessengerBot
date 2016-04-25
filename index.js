@@ -320,7 +320,7 @@ function news(sender, text){
     return false;
 }
 
-function news(sender, text){
+function favorite(sender, text){
     var response = 'Favorite? That is too hard of a question'
         sendTextMessage(sender, response);
         return true;
